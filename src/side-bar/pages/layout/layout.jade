@@ -1,0 +1,17 @@
+doctype html
+html(lang="zh-CN")
+	head
+		include ../include/head
+	body(id="wrapper")
+		//left Sidebar
+		div(id="left-sidebar-wrapper")
+			include ../include/left-side-bar
+		//Topbar
+		include ../include/top-bar
+		//Bottombar
+		include ../include/bottom-bar
+		div(id="page-content-wrapper")
+			block content
+	script(type="text/javascript")
+		include ../../js/index.js
+	block script

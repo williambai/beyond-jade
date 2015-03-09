@@ -1,6 +1,6 @@
 var config = {
-	src: 'src/nciic-demo',
-	dest: 'dist/nciic-demo',
+	src: 'src/side-bar',
+	dest: 'dist/side-bar',
 	server: {
 		host: '0.0.0.0',
 		port: '8000'

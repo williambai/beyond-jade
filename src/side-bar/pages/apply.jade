@@ -1,0 +1,19 @@
+extends ./layout/layout
+
+block content
+	form
+		div.form-group
+			label 请假类型
+			select.form-control
+				option 年假
+				option 探亲假
+		div.form-group
+			label 起始日期
+			input(type=text).form-control
+		div.form-group
+			label 起始时间
+			input(type=text).form-control
+		div.form-group
+			label 请假事由
+			input(type=text).form-contorl
+		button.btn.btn-primary.btn-block 提交
