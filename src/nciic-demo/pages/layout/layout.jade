@@ -1,0 +1,19 @@
+doctype html
+html(lang="zh-cn")
+	head
+		include ../include/head
+		title
+			block title
+	body
+		div(id="header")
+			include ../include/header
+		div(id="content")
+			block content
+		div(id="footer")
+			include ../include/footer
+script(src="js/jquery.js")
+script(src="js/underscore.js")
+script(src="js/main.js")
+block templates
+script
+	block scripts

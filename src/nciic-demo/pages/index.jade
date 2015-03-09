@@ -1,0 +1,41 @@
+extends ./layout/layout
+
+block title
+	|身份认证系统
+	
+block content
+	h3.text-center 身份验证及相关服务
+	hr
+	div.list-group
+		a.list-group-item(href="javascript:;" onClick="openNewView('single.html');")
+			h4 单条查询
+				span.glyphicon.glyphicon-play-circle.pull-left &nbsp;
+				span.glyphicon.glyphicon-chevron-right.pull-right
+		a.list-group-item(href="javascript:;" onClick="openNewView('multi.html')")
+			h4 多条查询
+				span.glyphicon.glyphicon-th-list.pull-left &nbsp;
+				span.glyphicon.glyphicon-chevron-right.pull-right
+		a.list-group-item(href="javascript:;" onClick="openNewView('photo.html')")
+			h4 人像对比服务
+				span.glyphicon.glyphicon-th-list.pull-left &nbsp;
+				span.glyphicon.glyphicon-chevron-right.pull-right
+		a.list-group-item(href="javascript:;" onClick="openNewView('detail.html')")
+			h4 户籍基本信息
+				span.glyphicon.glyphicon-th-list.pull-left &nbsp;
+				span.glyphicon.glyphicon-chevron-right.pull-right
+		a.list-group-item(href="javascript:;" onClick="openNewView('change.html')")
+			h4 户籍变更信息
+				span.glyphicon.glyphicon-th-list.pull-left &nbsp;
+				span.glyphicon.glyphicon-chevron-right.pull-right
+		a.list-group-item(href="javascript:;" onClick="openNewView('travel.html')")
+			h4 航旅信息
+				span.glyphicon.glyphicon-th-list.pull-left &nbsp;
+				span.glyphicon.glyphicon-chevron-right.pull-right
+		a.list-group-item(href="javascript:;" onClick="openNewView('idinfo.html')")
+			h4 身份证号码信息
+				span.glyphicon.glyphicon-th-list.pull-left &nbsp;
+				span.glyphicon.glyphicon-chevron-right.pull-right
+		a.list-group-item(href="javascript:;" onClick="openNewView('other.html')")
+			h4 其他信息
+				span.glyphicon.glyphicon-th-list.pull-left &nbsp;
+				span.glyphicon.glyphicon-chevron-right.pull-right

@@ -1,0 +1,22 @@
+script(type="text/template" id="template_result")
+	h3.text-center 单用户查询结果
+	hr
+	br
+	div.container
+		div.row
+			div.col-md-12
+				table.table.table-striped
+					thead
+						th 姓名
+						th 身份证号码
+						th 检查结果
+					tbody
+						<% for(var i=0; i<data.length; i++){ %>
+						tr
+							td <%= data[i]['xml'] %>
+							td <%= data[i]['gmsfhm'] %>
+							td <%= data[i]['result'] %>
+						<% } %>	
+		br
+		br
+		a.btn.btn-primary.btn-lg.btn-block(id="submit" href="javascript:;") 返&nbsp;&nbsp;回

@@ -1,0 +1,15 @@
+script(type="text/template" id="template_content")
+	h3.text-center
+		block subject
+	hr
+	div(id="message")
+	br
+	form.form-horizontal(id="form")
+	label
+	input.form-control.input-lg(id="name" type="text" placeholder="姓名")
+	span.help-block
+	input.form-control.input-lg(id="identification" type="text" placeholder="身份证号码")
+	span.help-block
+	br
+	br
+	a.btn.btn-primary.btn-lg.btn-block(id="submit" href="javascript:;") 查&nbsp;&nbsp;询

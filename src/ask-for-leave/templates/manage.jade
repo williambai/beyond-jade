@@ -1,0 +1,13 @@
+extends ./layout/layout
+
+block content
+	div.alert.alert-warning 您有{{messages}}条申请要审核
+	div.panel.panel-default
+		div.panel-heading
+			div.pull-right {{item.status}}
+			h4 {{item.type}}
+		div.panel-body
+			p 请假时间：{{item.startTime}}到{{item.endTime}}
+			div 详细信息
+				div
+					p {{item.reason}}
