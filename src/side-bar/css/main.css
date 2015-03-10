@@ -72,10 +72,12 @@
     margin-top: 60px;
     margin-bottom: 60px;
     width: 100%;
+    position:absolute;
     padding: 15px;
 }
 
 #wrapper.left-sidebar-toggled #page-content-wrapper {
+    position:absolute;
     margin-right: 250px;
 }
 
@@ -148,5 +150,8 @@
         left: 250px;
         bottom:0px;
         border-width: 0 0 1px;
+    }
+    #page-content-wrapper {
+        position:relative;
     }
 }
