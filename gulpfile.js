@@ -1,6 +1,6 @@
 var config = {
-	src: 'src/side-bar',
-	dest: 'dist/side-bar',
+	src: 'src/ibeacon',
+	dest: 'dist/ibeacon',
 	server: {
 		host: '0.0.0.0',
 		port: '8000'
@@ -12,6 +12,7 @@ var config = {
       	],
       	js: [
       		'./bower_components/jquery/dist/jquery.js',
+      		'./bower_components/bootstrap/dist/js/bootstrap.js',
       		'./bower_components/underscore/underscore.js'
       	],
       	css: [
@@ -123,6 +124,15 @@ gulp.task('css',function(){
 });
 
 /*======================================================================
+=            Compile css                            =
+======================================================================*/
+
+gulp.task('images',function(){
+	gulp.src(path.join(config.src, 'images/**/*'))
+		.pipe(gulp.dest(path.join(config.dest,'images')));
+});
+
+/*======================================================================
 =            Compile jade                            =
 ======================================================================*/
 
@@ -159,7 +169,8 @@ gulp.task('build',function(done) {
 					'plugin-js',
 					'js',
 					'css',
-					'jade'
+					'images',
+					'jade',
 				];
 	seq('clean',tasks,done);	
 });
