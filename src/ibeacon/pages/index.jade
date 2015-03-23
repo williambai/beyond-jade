@@ -12,22 +12,21 @@ block content
 				.item
 					img(src="images/slider-2.jpg" width="100%")
 	div.container
-		h2 ibeacon 介绍
+		h2 一个设备，两种功能
+		hr
+		div.row
+			div.col-md-6
+				.thumbnail
+					img(src="images/product-3.jpg" width="100%")
+					h4 互动屏幕
+					p 与电视或液晶屏相连接，通过互联网动态更新内容
+			div.col-md-6
+				.thumbnail
+					img(src="images/slider-1.jpg" width ="100%")
+					h4 微信摇一摇
+					p 与微信“摇一摇”功能对接，有效与用户互动
+	div(id="business")
+		include ./include/business				
+	//div.container
+		include ./include/what_is_ibeacon
 
-		h4 什么是iBeacon？
-		p iBeacon是物联网中的诸多传感器之一，它是苹果公司结合蓝牙超低功耗无线技术(Bluetooth Low Energy)所开发的一套开放性协议。2013年起，绝大部分智能机开始搭载支持BLE的蓝牙模块。
-		p iBeacon通过低功耗蓝牙技术（Bluetooth Low Energy，BLE，即蓝牙4.0）发射广播信号，在iBeacon基站附近可以创建一个信号区域，当接收设备（智能手机、平板电脑等移动终端）进入该区域时，通过能够安置在任何物体中的iBeacon低功耗蓝牙基站，用户便能使用具有iBeacon功能的移动设备与应用方进行互动。
-		p 基于iBeacon可以实现的功能有：
-		ul
-			li 基于用户当前所在位置的优惠或信息推送。精度能达到0.5m；
-			li 室内定位和引导。比GPS更精准，且可以应用在室内等GPS无法发挥作用的场馆；
-			li 智能互动。提升和用户的互动体验；
-			li 精准营销大数据分析
-		h4 什么是微信摇一摇·周边？
-		p “摇一摇·周边”是微信提供的一种新的基于位置的连接方式
-		p 用户通过“摇一摇”的“周边”页卡，可以与线下商户进行互动，获得商户提供的个性化的服务
-		p 商户申请该功能后，需要在门店自主铺设支持iBeacon协议的蓝牙硬件，并在商户后台设置硬件和对应服务的关联
-
-		h4 是否所有拥有微信公众号的商户/个人都可以申请微信摇一摇·周边？
-		p 已经通过“微信认证”的服务号或者订阅号
-		p 已经开通“门店管理”，并且已开通至少一家门店
