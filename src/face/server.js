@@ -13,8 +13,8 @@ app.use(morgan('dev'));
 
 // HTTP server
 var server = http.createServer(app);
-server.listen(8000, function () {
-  console.log('HTTP server listening on port ' + 8000);
+server.listen(8080, function () {
+  console.log('HTTP server listening on port ' + 8080);
 });
 
 // WebSocket server

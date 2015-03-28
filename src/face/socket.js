@@ -1,35 +1,35 @@
 var cv = require('opencv');
-
-// camera properties
-var camWidth = 320;
-var camHeight = 240;
-var camFps = 10;
-var camInterval = 1000 / camFps;
-
 // face detection properties
 var rectColor = [0, 255, 0];
 var rectThickness = 2;
 
-// initialize camera
-var camera = new cv.VideoCapture(0);
-camera.setWidth(camWidth);
-camera.setHeight(camHeight);
-
 module.exports = function (socket) {
-  setInterval(function() {
-    camera.read(function(err, im) {
+  socket.on('snapshot',function(data){
+    // extract raw base64 data from Data URI
+    var raw_image_data = data.image.replace(/^data\:image\/\w+\;base64\,/, '');
+    var buffer = new Buffer(raw_image_data,'base64');
+    cv.readImage(buffer,function(err,mat){
+
       if (err) throw err;
 
-      im.detectObject('./node_modules/opencv/data/haarcascade_frontalface_alt2.xml', {}, function(err, faces) {
-        if (err) throw err;
-
-        for (var i = 0; i < faces.length; i++) {
-          face = faces[i];
-          im.rectangle([face.x, face.y], [face.x + face.width, face.y + face.height], rectColor, rectThickness);
+      mat.detectObject('./node_modules/opencv/data/haarcascade_frontalface_alt.xml', 
+        {}, 
+        function(err, faces) {
+          if (err) throw err;
+          for (var i = 0; i < faces.length; i++) {
+            face = faces[i];
+            mat.rectangle(
+              [face.x, face.y], 
+              [face.x + face.width, face.y + face.height], 
+              rectColor, 
+              rectThickness
+            );
+          }
+          var face_data = mat && mat.toBuffer();
+          var face_url = 'data:image/' + 'png' +';base64,' + face_data.toString('base64');
+          socket.emit('face',{face: face_url});
         }
-
-        socket.emit('frame', { buffer: im.toBuffer() });
-      });
+      );
     });
-  }, camInterval);
+  });
 };
