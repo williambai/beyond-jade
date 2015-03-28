@@ -18,12 +18,20 @@ module.exports = function (socket) {
           if (err) throw err;
           for (var i = 0; i < faces.length; i++) {
             face = faces[i];
-            mat.rectangle(
-              [face.x, face.y], 
-              [face.x + face.width, face.y + face.height], 
+            mat.ellipse(face.x + face.width/2, 
+              face.y + face.height/2, 
+              face.width/2, 
+              face.height/2,
               rectColor, 
               rectThickness
-            );
+              );
+
+            // mat.rectangle(
+            //   [face.x, face.y], 
+            //   [face.x + face.width, face.y + face.height], 
+            //   rectColor, 
+            //   rectThickness
+            // );
           }
           var face_data = mat && mat.toBuffer();
           var face_url = 'data:image/' + 'png' +';base64,' + face_data.toString('base64');
