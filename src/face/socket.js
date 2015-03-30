@@ -15,6 +15,7 @@ module.exports = function (socket) {
       mat.detectObject('./node_modules/opencv/data/haarcascade_frontalface_alt.xml', 
         {}, 
         function(err, faces) {
+          var _mat = mat;
           if (err) throw err;
           for (var i = 0; i < faces.length; i++) {
             face = faces[i];
@@ -25,15 +26,10 @@ module.exports = function (socket) {
               rectColor, 
               rectThickness
               );
+            _mat = mat.crop(face.x,face.y,face.width,face.height);//roi()
 
-            // mat.rectangle(
-            //   [face.x, face.y], 
-            //   [face.x + face.width, face.y + face.height], 
-            //   rectColor, 
-            //   rectThickness
-            // );
           }
-          var face_data = mat && mat.toBuffer();
+          var face_data = (_mat && _mat.toBuffer()) || mat;
           var face_url = 'data:image/' + 'png' +';base64,' + face_data.toString('base64');
           socket.emit('face',{face: face_url});
         }
