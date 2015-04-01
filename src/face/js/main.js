@@ -46,3 +46,14 @@ socket.on('face',function(data){
 	}
 	$('#my_faces').html(html);
 });
+
+socket.on('pic',function(data){
+	var html = '';
+	for(var i=0; i < 6; i++){
+		html += '<div class="col-md-2">';
+		html += '<img src="' + data.face + '" width="100%">';
+		html += '</div>';
+	}
+	$('#my_pics').html(html);
+
+})
