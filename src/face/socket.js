@@ -1,5 +1,6 @@
 var cv = require('opencv');
 var fs = require('fs');
+var path = require('path');
 var async = require('async');
 
 // face detection properties
@@ -57,6 +58,12 @@ module.exports = function (socket) {
                 // _mat.convertGrayscale();
                 var face_data = (_mat && _mat.toBuffer()) || mat.toBuffer();
                 var face_url = 'data:image/' + 'png' +';base64,' + face_data.toString('base64');
+                var positive_dir = path.join(__dirname,'data','raw','positive');
+                fs.readdir(positive_dir,function(err,files){
+                  if(files.length < 30){
+                    _mat.save(positive_dir + '/' + (new Date().getTime()) + '.jpg');
+                  }
+                });
                 socket.emit('face',{face: face_url});
                 break;
             }
