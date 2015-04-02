@@ -1,6 +1,6 @@
 var config = {
-	src: 'src/face',
-	dest: 'dist/face',
+	src: 'src/ibeacon',
+	dest: 'dist/ibeacon',
 	server: {
 		host: '0.0.0.0',
 		port: '8000'
