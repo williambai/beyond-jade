@@ -56,4 +56,20 @@ socket.on('pic',function(data){
 	}
 	$('#my_pics').html(html);
 
-})
+});
+var reports = [];
+socket.on('report',function(data){
+	if(reports.length < 6){
+		reports.push(data.report);
+	}else{
+		reports.shift();
+		reports.push(data.report);
+	}
+	var html = '';
+	for(var i=0; i < 6; i++){
+		html += '<div class="col-md-2">';
+		html += '<img src="' + (reports[i] && reports[i].id == 0 ? 'images/false.png' : 'images/true.jpg') + '" width="100%">';
+		html += '</div>';
+	}
+	$('#my_reports').html(html);
+});

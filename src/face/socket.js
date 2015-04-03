@@ -6,6 +6,9 @@ var async = require('async');
 // face detection properties
 var rectColor = [0, 255, 0];
 var rectThickness = 2;
+//predict
+var faceRecognizer = new cv.FaceRecognizer();
+faceRecognizer.loadSync(path.join(__dirname,'data','phrase1','model.dat'));
 
 module.exports = function (socket) {
   socket.on('snapshot',function(data){
@@ -29,29 +32,29 @@ module.exports = function (socket) {
             if(err) throw err;
             var _mat = mat.crop(0,0,1,1);
             //face found
-            console.log(result[0]);
+            // console.log(result[0]);
             var faces = result[0];
             for (var i = 0; i < faces.length; i++) {
                 face = faces[i];
-                mat.ellipse(face.x + face.width/2,
-                  face.y + face.height/2,
-                  face.width/2,
-                  face.height/2,
-                  rectColor,
-                  rectThickness
-                  );
+                // mat.ellipse(face.x + face.width/2,
+                //   face.y + face.height/2,
+                //   face.width/2,
+                //   face.height/2,
+                //   rectColor,
+                //   rectThickness
+                //   );
                 //eye found
-                console.log(result[1]);
+                // console.log(result[1]);
                 var eyes = result[1];
                 for (var i = 0; i < eyes.length; i++) {
                     eye = eyes[i];
-                    mat.ellipse(eye.x + eye.width/2,
-                      eye.y + eye.height/2,
-                      eye.width/2,
-                      eye.height/2,
-                      rectColor,
-                      rectThickness
-                    );
+                    // mat.ellipse(eye.x + eye.width/2,
+                    //   eye.y + eye.height/2,
+                    //   eye.width/2,
+                    //   eye.height/2,
+                    //   rectColor,
+                    //   rectThickness
+                    // );
                 }
                 //crop face
                 _mat = mat.crop(face.x,face.y,face.width,face.height);//roi()
@@ -60,11 +63,15 @@ module.exports = function (socket) {
                 var face_url = 'data:image/' + 'png' +';base64,' + face_data.toString('base64');
                 var positive_dir = path.join(__dirname,'data','raw','positive');
                 fs.readdir(positive_dir,function(err,files){
-                  if(files.length < 30){
+                  if(files.length < 100){
                     _mat.save(positive_dir + '/' + (new Date().getTime()) + '.jpg');
                   }
                 });
                 socket.emit('face',{face: face_url});
+                //predict
+                var report = faceRecognizer.predictSync(_mat);
+                socket.emit('report',{report:report});
+                console.log(report);
                 break;
             }
 
