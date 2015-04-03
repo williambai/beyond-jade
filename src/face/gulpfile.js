@@ -11,78 +11,82 @@ var config = {
 };
 
 var detectObjectInFile = function(files,callback){
-	var file = files.shift();
-	console.log('file:' + file);
-	if(file === undefined){
-		callback();
-		return;
-	}
-	if(file.indexOf('.jpg') == -1){
-		detectObjectInFile(files,callback);
-		return;
-	}
-	cv.readImage(path.join(config.src,'negative',file),function(err,mat){
-		if(err) {
+	//回调函数(queue)
+	var func = function(files){
+		var file = files.shift();
+		console.log('file:' + file);
+		if(file === undefined){
 			callback();
 			return;
 		}
-		console.log(mat);
-		if (mat.width() > 0 && mat.height() > 0){
-		  async.series(
-		    [
-		      function(next){
-		        mat.detectObject('./node_modules/opencv/data/haarcascade_frontalface_alt.xml', 
-		          {}, next);
-		      },
-		      function(next){
-		        mat.detectObject('./node_modules/opencv/data/haarcascade_mcs_eyepair_small.xml', 
-		          {}, next);
-		      },
-		    ],
-		    function(err,result){
-		        if(err) {
-		        	callback();
-		        	return;
-		        }
-		        var _mat = mat.crop(0,0,1,1);
-		        //face found
-		        console.log(result[0]);
-		        var faces = result[0];
-		        for (var i = 0; i < faces.length; i++) {
-		            face = faces[i];
-		            // mat.ellipse(face.x + face.width/2,
-		            //   face.y + face.height/2,
-		            //   face.width/2,
-		            //   face.height/2,
-		            //   rectColor,
-		            //   rectThickness
-		            //   );
-		            //eye found
-		            // console.log(result[1]);
-		            var eyes = result[1];
-		            for (var i = 0; i < eyes.length; i++) {
-		                eye = eyes[i];
-		                // mat.ellipse(eye.x + eye.width/2,
-		                //   eye.y + eye.height/2,
-		                //   eye.width/2,
-		                //   eye.height/2,
-		                //   rectColor,
-		                //   rectThickness
-		                // );
-		            }
-		            //crop face
-		            _mat = mat.crop(face.x,face.y,face.width,face.height);//roi()
-		            _mat.convertGrayscale();
-	                _mat.save(path.join(config.phrase1,'negative',file));
-		            break;
-		        };
-		        detectObjectInFile(files,callback);
-	        }
-		  );
-		}else{
-	        detectObjectInFile(files,callback);			
+		if(file.indexOf('.jpg') == -1){
+			func(files);
+			return;
 		}
-	});
+		cv.readImage(path.join(config.src,'negative',file),function(err,mat){
+			if(err) {
+				callback();
+				return;
+			}
+			console.log(mat);
+			if (mat.width() > 0 && mat.height() > 0){
+			  async.series(
+			    [
+			      function(next){
+			        mat.detectObject('./node_modules/opencv/data/haarcascade_frontalface_alt.xml', 
+			          {}, next);
+			      },
+			      function(next){
+			        mat.detectObject('./node_modules/opencv/data/haarcascade_mcs_eyepair_small.xml', 
+			          {}, next);
+			      },
+			    ],
+			    function(err,result){
+			        if(err) {
+			        	callback();
+			        	return;
+			        }
+			        var _mat = mat.crop(0,0,1,1);
+			        //face found
+			        console.log(result[0]);
+			        var faces = result[0];
+			        for (var i = 0; i < faces.length; i++) {
+			            face = faces[i];
+			            // mat.ellipse(face.x + face.width/2,
+			            //   face.y + face.height/2,
+			            //   face.width/2,
+			            //   face.height/2,
+			            //   rectColor,
+			            //   rectThickness
+			            //   );
+			            //eye found
+			            // console.log(result[1]);
+			            var eyes = result[1];
+			            for (var i = 0; i < eyes.length; i++) {
+			                eye = eyes[i];
+			                // mat.ellipse(eye.x + eye.width/2,
+			                //   eye.y + eye.height/2,
+			                //   eye.width/2,
+			                //   eye.height/2,
+			                //   rectColor,
+			                //   rectThickness
+			                // );
+			            }
+			            //crop face
+			            _mat = mat.crop(face.x,face.y,face.width,face.height);//roi()
+			            _mat.convertGrayscale();
+		                _mat.save(path.join(config.phrase1,'negative',file));
+			            break;
+			        };
+			        func(files);
+		        }
+			  );
+			}else{
+		        func(files);			
+			}
+		});
+	};
+	func(files.slice());
 }
 
 gulp.task('negative-phrase1',function(done){
