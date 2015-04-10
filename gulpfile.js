@@ -1,6 +1,6 @@
 var config = {
-	src: 'src/ibeacon',
-	dest: 'dist/ibeacon',
+	src: 'src/d3',
+	dest: 'dist/d3',
 	server: {
 		host: '0.0.0.0',
 		port: '8000'
@@ -24,12 +24,22 @@ var config = {
 	}
 };
 
+
 var gulp = require('gulp');
 var connect = require('gulp-connect');
 var path = require('path');
 var seq = require('run-sequence');
 var jade = require('gulp-jade');
 var del = require('del');
+
+/*=========================================
+=            merge project config         =
+=========================================*/
+
+if (require('fs').existsSync(path.join(__dirname, config.src ,'config.js'))){
+  var configFn = require(path.join(__dirname, config.src ,'config.js'));
+  configFn(config);
+};
 
 /*=========================================
 =            Clean dest folder            =
