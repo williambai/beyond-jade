@@ -3,30 +3,99 @@ extends ./layout/layout
 block content
 	//carousel
 	.container
-		.carousel.slide(data-ride="carousel")
-			.carousel-inner
+		#carousel-slides.carousel.slide(data-ride="carousel")
+			- var i;
+			.carousel-inner(role="listbox")
 				.item.active
-					img(src="images/product-3.jpg" width="100%")
+					img(src="images/幻灯片01.png" width="100%")
+				- for(i=2;i<10;i++){
 				.item
-					img(src="images/slider-1.jpg" width="100%")
-				.item
-					img(src="images/slider-2.jpg" width="100%")
-	div.container
-		h2 一个设备，两种功能
+					img(src="images/幻灯片0#{i}.png" width="100%")
+				- } 
+			ol.carousel-indicators
+				li(data-target="#carousel-slides" data-slide-to="0").active
+				- for(i=1;i<10;i++){
+				li(data-target="#carousel-slides" data-slide-to="#{i}")
+				- }
+		a.carousel-control.left(href="#carousel-slides" role="button" data-slide="prev")
+			span.glyphicon.glyphicon-chevron-left
+			span.sr-only Previous	
+		a.carousel-control.right(href="#carousel-slides" role="button" data-slide="next")
+			span.glyphicon.glyphicon-chevron-right
+			span.sr-only Next		
+	//- div.container
+		h2 用移动互联网连接一切
+		p 信息时代只有两个数字：0和1。
+		p 围绕着0和1的发明创造已经结束，剩下的只有信息的互联互通了。无论Iphone的功能有多强大，其本质仍是解决的信息连接，而且在不断强化其连接一切的能力。
+		p 我们要做连接器：连接人与人，连接人与物，连接物与物，直至连接一切，让他们会讲话，会听话，会思考。
 		hr
-		div.row
-			div.col-md-6
-				.thumbnail
-					img(src="images/product-3.jpg" width="100%")
-					h4 互动屏幕
-					p 与电视或液晶屏相连接，通过互联网动态更新内容
-			div.col-md-6
-				.thumbnail
-					img(src="images/slider-1.jpg" width ="100%")
-					h4 微信摇一摇
-					p 与微信“摇一摇”功能对接，有效与用户互动
-	div(id="business")
+		.row
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+			.col-md-8
+				p 过去十几年，互联网只是将固态的信息介质液态化，一切看得见、摸得着的信息介质如纸媒（信件、报纸、书籍、杂志、地图、日记本）、影音（胶卷、录像带、VCD、卡带）、通讯（座机、广播）、传统游戏（棋牌），办公（文档）以及所有商品交易信息进行全面数字化，连接到网络后，信息的全面液态化使得现实世界一下子变平，极致提高了信息的流动性与传播效率；而下一个十年，将是液态信息气态化，由信息如水进化到信息如空气，一切数据将无处不在，无时不在，无处无时不感知不交互不迭代。
+		hr
+		.row
+			.col-md-8
+				p 到21世纪的第二个十年，大部分计算将不会只是出现在这样的矩形设备中，而是分布在整个环境里，计算将无处不在，在墙里，在我们的家具里，在我们的衣服里，以及我们的身体和大脑里。
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+		hr
+		.row
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+			.col-md-8
+				p 互联网的根本只是在于一个连接，但是当万事万物全部进行连接，连接的范畴越来广泛，连接的终端越来越强大，连接的速度越来越快，连接的交互方式越来越自然，使得看上去这个分布式网络是极速熵增的，但背后的实质却是负熵的，也即自组织的有规律的，这是非常可怕的力量。而真正最可怕的，互联网只有一个，再这么切割防御，互联网永远只有一个！所谓“后互联网时代”，其实就是集全世界的力量在共同打造一个云端神经大脑，人类以各种看似无序的方式有序的以上帝视角在创造另一个现实映射世界，精神世界，客观世界。
+		hr
+		.row
+			.col-md-8
+				p 实体世界的连接还在无限扩展，同时被全面虚拟化。实体世界的连接，随着移动互联网在连接方式上的巨大变化，其触角变得更广，从社会活动，商业活动，出行方式，涉及到了周边生活服务的连接，O2O在信息、物流、服务、支付四大体系的连接实则是对过去互联网实体世界连接十几年发展积淀的一次综合检验；其二，各种廉价传感器的蓬勃发展，物联网也被纳入了本来纯以人为中心的互联网范畴，无数智能硬件必定不可逆的继续朝实体世界的全面数字化与万物联动而发展；其三，实体世界最后一块难啃没被连接的价值单元——货币，也将被虚拟金融打破区域集中化而真正网络化连接。当衣食住行全部数字化，然后被连接，人们在网络上就完成了现实世界的全面映射，完全生活在虚拟空间不是不可能了。
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+		hr
+		.row
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+			.col-md-8
+				p 精神世界的连接趋于多元化，垂直细分化，四维化。这取决于经济基础上升后，人类的自我诉求会更加凸显，价值观更趋于丰富，在过去多奇葩多极品的人在全球几十亿分布节点下，不同细分的人群都可以在精神层面上得到连接；同时，在抛却物理空间的局限下，又能在时间维度上得到连接，完全不同价值观的人群，可以因为同一个情绪同一个事件，在不同的碎片时间得到共鸣。比如，我就很看好真正意义上以纯精神为主的虚拟恋爱服务，无数男女（不管老少）在精神上希望有恋爱的享受体验，但这种体验在虚拟空间因为超越肉体器官参数的束缚反而更容易实现，恋爱体验不应该只保鲜停留在青春时期，而可以做到随着不同时间阶段继续存续的体验，这在没有互联网尤其没有移动互联网的时代是做不到的。
+		hr
+		.row
+			.col-md-8
+				p 客观世界的连接趋于人工智能化，所有人类思维的价值信息在类神经元的唯一一个互联网连接后，一定会自主学习，自主连接从而自主进化。为什么全球两大搜索引擎巨头都全力以赴、不遗余力地投身于人工智能的研究？因为唯有搜索引擎的连接背后纯粹是人机交互的，人类主动意识输入指令，机器通过数据挖掘与学习输出反馈，而人类的输入方式唯有几种，文字、语音、图像，所以机器只能围绕人类这几种输入方式来分别掌握语义、语音、图像识别技术，还不得不加成一个深度学习算法这样的吸血光环，所以，作为第三世界的典型应用搜索引擎，其连接朝人工智能衍变是必然也是不可逆的，而问答类网站的第三世界连接为人工智能积累了学习人类思维非常重要的一个数据库，也极具价值。
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+		hr
+		.row
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+			.col-md-8
+				p 人机交互的成败决定了互联网连接的成败。人类的纠缠态在表现形式上当前无非文字、声音、图像、脑电波，于是从纯键盘，到GUI的键盘+鼠标，到GUI的触摸屏+麦克风+摄像头，再到去掉一切，通过语音语义识别、图像识别、手势识别、脑电波识别，人机交互越来越简单，越来越接近于人类自然的交互方式，这种变革进化是真正成就一切纠缠态被连接的核心基础。
+		hr
+		.row
+			.col-md-8
+				p 纠缠态背后是人性与欲望，交互是所有纠缠态的输入输出方式，连接是纠缠态的放大器。当一个互联网应用或服务其解决人类越深的纠缠态，越贴近人类本能或自然的交互方式，连接所覆盖的世界（包含三世界）越广大，那么自然它的价值也就越大。
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+		hr
+		.row
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+			.col-md-8
+				p 深度的纠缠态，自然的交互体验，无所不在的连接，是人类这张唯一的网我所能预见的。然而，还有一个东西不能缺失，那就是“美”。纠缠态所“纠缠”的背后都与“美”相关。
+		hr
+		.row
+			.col-md-8
+				p 从三世界理论看，实体世界是美的，人之相貌气度，乐之节奏旋律，食之色香入味，这是现实背后的数字之美，精神世界是美的，所有种植在人类基因的欲望是美的，家庭的喜怒哀乐，爱情的悲喜相交，财富的杀伐涨落，这是生物逻辑的熵增之美，客观世界是美的，信息的不断结构化与精细化越来越展现它的负熵之美。
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+		hr
+		.row
+			.col-md-4
+				img(src="images/product-3.jpg" width="100%")
+			.col-md-8
+				p 体验即设计:无论我们讨论的是贺卡、移动应用还是外出度假，体验就是产品。从客户的角度而言，一切构成体验的东西—技术、材料、服务支持或供应链等，都成为了体验背后的魔法。
+	//- div(id="business")
 		include ./include/business				
-	//div.container
+	//- div.container
 		include ./include/what_is_ibeacon
 
