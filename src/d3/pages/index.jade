@@ -1,0 +1,29 @@
+extends ./layout/layout
+
+block content
+	//carousel
+	.container
+		#carousel-slides.carousel.slide(data-ride="carousel")
+			- var i;
+			.carousel-inner(role="listbox")
+				.item.active
+					img(src="images/幻灯片1.png" width="100%")
+				- for(i=2;i<3;i++){
+				.item
+					img(src="images/幻灯片#{i}.png" width="100%")
+				- } 
+				- for(i=10;i<10;i++){
+				.item
+					img(src="images/幻灯片#{i}.png" width="100%")
+				- } 
+			ol.carousel-indicators
+				li(data-target="#carousel-slides" data-slide-to="0").active
+				- for(i=1;i<2;i++){
+				li(data-target="#carousel-slides" data-slide-to="#{i}")
+				- }
+		a.carousel-control.left(href="#carousel-slides" role="button" data-slide="prev")
+			span.glyphicon.glyphicon-chevron-left
+			span.sr-only Previous	
+		a.carousel-control.right(href="#carousel-slides" role="button" data-slide="next")
+			span.glyphicon.glyphicon-chevron-right
+			span.sr-only Next		

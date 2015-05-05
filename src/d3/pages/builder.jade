@@ -1,0 +1,250 @@
+extends ./layout/layout1
+
+block content
+    // Add your site or application content here
+    #interactiveContent
+      #leftColumn.column
+        .cbInner
+          #staticContainer
+            #chartContainer
+            |   
+            |   &#x9;&#x9;&#x9;&#x9;&#x9;
+            canvas#canvas(width='1200px', height='676px')
+            |  
+            |   &#x9;&#x9;&#x9;&#x9;&#x9;
+            canvas#favicanvas(width='16px', height='16px')
+      | &#x9;&#x9;&#x9;
+      #rightColumn.column
+        .cbInner
+          h1 ChartBuilder
+          | &#x9;&#x9;&#x9;  
+          |   &#x9;&#x9;&#x9;&#x9;
+          #chartOptions.interfaceCol
+            #datainput
+              .inputGroup
+                h2 1. Input your data
+                |                 
+                span#invalidDataSpan.hide Warning: Data is Invalid
+                |                 
+                textarea#csvInput.input-box(name='csvInput', rows='8')
+              |              &#x9;
+              .inputGroup
+                h4 Check the format of your data
+                |                 
+                #dataTable.input-box
+                  table(border='0')
+                    tr
+                      th Header
+                    |                     
+                    tr
+                      td Data
+              |              &#x9;
+              .clearfix
+            |             
+            .optionBlock.topOptionBlock
+              h2 2. Series Options
+              |               
+              #seriesItems
+            |   &#x9;&#x9;&#x9;&#x9;&#x9;
+            |   &#x9;&#x9;&#x9;&#x9;&#x9;
+            .optionBlock
+              h2 3. Chart Options
+              |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup
+                label(for='chart_title') Title
+                input#chart_title(type='text', name='chart_title', value='')
+              |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup
+                label(for='credit') Credit
+                input#creditLine(type='text', name='credit', value='Made with Chartbuilder')
+              |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup
+                label(for='source') Source
+                input#sourceLine(type='text', name='source', value='Data: ')
+                |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                cite Something like &quot;Data: Bureau of Labor Statistics&quot; or &quot;Data compiled by Factset&quot;
+            |     &#x9;&#x9;&#x9;&#x9;
+            .optionBlock
+              h2 4. Right Axis Options
+              |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              #rightAxisControls
+                .optionGroup
+                  label(for='right_axis_prefix') Right Axis Prefix
+                  input#right_axis_prefix(type='text', name='right_axis_prefix', value='')
+                | &#x9;    &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                .optionGroup
+                  label(for='right_axis_suffix') Right Axis Suffix
+                  input#right_axis_suffix(type='text', name='right_axis_suffix', value='')
+                | &#x9;    &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                .optionGroup
+                  label(for='right_axis_tick_num') Number of Y Axis Ticks
+                  select#right_axis_tick_num(name='right_axis_tick_num', size='1')
+                    option 3
+                    | &#x9;    &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    option(selected='') 4
+                    | &#x9;    &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    option 5
+                    | &#x9;    &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    option 6
+                    |                     
+                    option 7
+                    |                     
+                    option 8
+                    |                     
+                    option 9
+                    |                     
+                    option 10
+                |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                .optionGroup
+                  label(for='right_axis_max') Right Axis Max
+                  input#right_axis_max(type='text', name='right_axis_max', value='')
+                |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                .optionGroup
+                  label(for='right_axis_min') Right Axis Min
+                  input#right_axis_min(type='text', name='right_axis_min', value='')
+                |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                .optionGroup.advanced
+                  label(for='right_axis_tick_override') Right Axis Tick Override
+                  input#right_axis_tick_override(type='text', name='right_axis_tick_override', value='')
+            |     &#x9;&#x9;&#x9;&#x9;&#x9;
+            #leftAxisControls.optionBlock.hide
+              h2 4+ Left Axis Options
+              |   &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup
+                label(for='left_axis_prefix') Left Axis Prefix
+                input#left_axis_prefix(type='text', name='left_axis_prefix', value='')
+              |   &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup
+                label(for='left_axis_suffix') Left Axis Suffix
+                input#left_axis_suffix(type='text', name='left_axis_suffix', value='')
+              |   &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup
+                label(for='left_axis_max') Left Axis Max
+                input#left_axis_max(type='text', name='left_axis_max', value='')
+              |   &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup
+                label(for='left_axis_min') Left Axis Min
+                input#left_axis_min(type='text', name='left_axis_min', value='')
+              |   &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup
+                label(for='left_axis_tick_override') Left Axis Tick Override
+                input#left_axis_tick_override(type='text', name='left_axis_tick_override', value='')
+            |     &#x9;&#x9;&#x9;&#x9;&#x9;
+            .optionBlock
+              h2 5. Bottom Axis Options
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup.showonlywith-date
+                label(for='x_axis_tick_date_frequency') Tick date frequency
+                select#x_axis_tick_date_frequency(name='x_axis_tick_date_frequency', size='1')
+                  option(selected='') auto
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 1 hour
+                  |                 
+                  option 2 hours
+                  |                 
+                  option 3 hours
+                  |                 
+                  option 4 hours
+                  |                 
+                  option 6 hours
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 1 day
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 1 week
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 1 month
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 3 months
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 6 months
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 1 year
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 5 years
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 10 years
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 20 years
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 50 years
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option 100 years
+              |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .optionGroup.showonlywith-date
+                label(for='x_axis_date_format') X Axis Date Format
+                select#x_axis_date_format(name='x_axis_date_format')
+                  option(value='mmddyyyy') 2/25/2012
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='ddmmyyyy') 25/2/2012
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='mmdd') 2/25
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='Mdd') Feb. 25
+                  |                   
+                  option(value='ddM') 25 Feb.
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='mmyy') 2/13
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='yy') &apos;13
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='yyyy') 2013
+                  |                   
+                  option(value='QJan') Q2 (Jan. FY)
+                  |                   
+                  option(value='QJul') Q2 (July FY)
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='MM') February
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(selected='', value='M') Feb.
+                  |     &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  option(value='hmm') 3:27
+              |               
+              .optionGroup.showonlywith-ordinal No options available
+            |             
+            .optionBlock.full
+              h2 4. Export
+              |               
+              #createImageButton.updateButton
+                p Create Image of Chart
+              |               
+              #downloadLinksDiv.downloadLinks.hide
+                a#downloadImageLink.downloadLink(download='new_chart.png', href='#', target='_blank') Download&nbsp;Image&nbsp;of&nbsp;Chart
+                |  or 
+                |                 
+                a#downloadSVGLink.downloadLink(download='new_chart.svg', href='#', target='_blank') Download&nbsp;SVG&nbsp;of&nbsp;Chart
+            |             
+            .optionBlock.full
+              h4 5. Copy the HTML table of your data (if you want)
+              |               
+              textarea#table-html.input-box(type='text', rows='10')
+              |               
+              |               
+              .previousCharts.hide
+                .optionGroup
+                  label(for='previous_charts') Previously Created Charts
+                  |                   
+                  select#previous_charts(name='previous_charts')
+            |             
+            .clearfix
+          |   &#x9;&#x9;&#x9;&#x9;
+          |           
+          #currentSeries.interfaceCol
+      |       
+      #blankColumn.column
+      |       
+      .clearfix
+    script(type='text/javascript').
+      //This loads the webfonts and starts Chartbuilder once they're present
+      //- WebFont.load({
+      //- custom: {
+      //- families: ["Cutive"]
+      //- },
+      //- active: function(name) {
+      //- $(document).ready(function() {
+      //- ChartBuilder.start();
+      //- });
+      //- }
+      //- });
+      $(document).ready(function() {
+      ChartBuilder.start();
+      });
