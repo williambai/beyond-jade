@@ -1,6 +1,6 @@
 var config = {
-	src: 'src/d3',
-	dest: 'dist/d3',
+	src: 'src/ibeacon',
+	dest: 'dist/ibeacon',
 	server: {
 		host: '0.0.0.0',
 		port: '8000'
@@ -13,7 +13,8 @@ var config = {
       	js: [
       		'./bower_components/jquery/dist/jquery.js',
       		'./bower_components/bootstrap/dist/js/bootstrap.js',
-      		'./bower_components/underscore/underscore.js'
+      		'./bower_components/underscore/underscore.js',
+      		'./bower_components/backbone/backbone.js'
       	],
       	css: [
       		'./bower_components/bootstrap/dist/css/bootstrap.css',
@@ -31,6 +32,12 @@ var path = require('path');
 var seq = require('run-sequence');
 var jade = require('gulp-jade');
 var del = require('del');
+
+/*=========================================
+=            select a project             =
+=========================================*/
+require('./config')(config);
+
 
 /*=========================================
 =            merge project config         =
