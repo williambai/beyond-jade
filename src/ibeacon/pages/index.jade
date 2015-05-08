@@ -12,9 +12,13 @@ block content
 				.item
 					img(src="images/幻灯片0#{i}.png" width="100%")
 				- } 
+				- for(i=10;i<15;i++){
+				.item
+					img(src="images/幻灯片#{i}.png" width="100%")
+				- } 
 			ol.carousel-indicators
 				li(data-target="#carousel-slides" data-slide-to="0").active
-				- for(i=1;i<10;i++){
+				- for(i=1;i<14;i++){
 				li(data-target="#carousel-slides" data-slide-to="#{i}")
 				- }
 		a.carousel-control.left(href="#carousel-slides" role="button" data-slide="prev")

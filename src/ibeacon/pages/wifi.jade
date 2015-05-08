@@ -1,0 +1,58 @@
+doctype html
+html(lang="zh-cn" charset="utf-8")
+	head
+		title 来播WiFi设置
+		style.
+			.center{
+				text-align: center;
+			}
+			input{
+				font-size: 16px;
+				width: 75%;
+				height: 32px;
+				margin-bottom: 20px;
+			}
+			select{
+				font-size: 24px;
+				margin-bottom: 20px;
+				width: 75%;
+			}
+			.submit{
+				vertical-align: center;
+				margin: auto;
+				padding:1px;
+				font-size: 24px;
+				width: 75%;
+				color: white;
+				background-color: blue;
+			}
+			p{
+				text-align: left;
+				width: 75%;
+				margin-left: 12.5%;
+			}
+			a:link{
+				text-decoration: none;
+			}
+	body
+		div.center
+			img(src="images/logo.jpg" width="120px;")
+			h2 设置WiFi
+			form(method="get" action="http://192.168.43.1:7766/setup")
+				select(multiple)
+					option(value="baidu|wpa") baidu
+					option(value="baidu|wpa") baidu
+					option(value="baidu|wpa") baidu
+					option(value="baidu|wpa") baidu
+					option(value="baidu|wpa") baidu
+					option(value="baidu|wpa") baidu
+				br
+				input(type="password" placeholder="请输入SSID的密码")
+				br
+				input(type="submit" value="提 交").submit
+				//- br
+				//- a(href="javascript:void(0);" onclick="alert('ok!')")
+				//- 	div.submit 提&nbsp;&nbsp;交
+			p 友情提示：
+			p 为了让爱播智能棒连接到后台服务器，请给爱播设置一个可以连接的WiFi接入点。
+
